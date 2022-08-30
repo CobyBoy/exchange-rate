@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API_URL: 'https://mercados.ambito.com//dolar/informal/historico-general/'
 };
