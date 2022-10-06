@@ -6,10 +6,11 @@ import { DolarService } from 'src/app/services/dolar.service';
 
 @Component({
   selector: 'exrate-blue',
-  templateUrl: './blue.component.html',
-  styleUrls: ['./blue.component.scss'],
+  templateUrl: './dolar-blue.component.html',
+  styleUrls: ['./dolar-blue.component.scss'],
 })
-export class BlueComponent implements OnInit {
+export class DolarBlueComponent implements OnInit {
+  title = 'Find blue dollar value in a date range';
   form!: FormGroup;
   invalidDate: boolean = false;
   data!: Array<GridDataItem>;
@@ -26,6 +27,7 @@ export class BlueComponent implements OnInit {
     this.form = this.fb.group({
       beforeDate: ['', Validators.required],
       afterDate: ['', Validators.required],
+      salary: [0, Validators.required],
     });
 
     this.form.valueChanges.subscribe((val) => {
@@ -37,20 +39,23 @@ export class BlueComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let beforeDateFormatted: string = this.formatDate(this.form.value.beforeDate);
+    let beforeDateFormatted: string = this.formatDate(
+      this.form.value.beforeDate
+    );
     let afterDateFormatted: string = this.formatDate(this.form.value.afterDate);
-    this.dolarService.getDollarValue(beforeDateFormatted, afterDateFormatted)
+    this.dolarService
+      .getDollarValue(beforeDateFormatted, afterDateFormatted)
       .subscribe((data: Array<Array<string>>) => {
-        this.data = this.formatData(data);
+        this.data = this.addSalaryCalculation(data);
       });
   }
 
   /**
-   * 
+   *
    * @param apiData the data got from the server
    * @returns tha data from the server as a single array of objects to pass it to Ag Grid
    */
-  formatData(apiData: Array<Array<string>>): Array<GridDataItem> {
+  formatData(apiData: Array<string[]>): GridDataItem[] {
     let gridData: Array<GridDataItem> = [];
     for (let index = 1; index < apiData.length; index++) {
       let apiDataResult = apiData[index];
@@ -64,9 +69,18 @@ export class BlueComponent implements OnInit {
     return gridData;
   }
 
+  addSalaryCalculation(apiData: Array<string[]>): GridDataItem[] {
+    let dataFormatted = this.formatData(apiData);
+    dataFormatted.forEach((obj) => {
+      let conversion = this.form.value.salary / parseFloat(obj['Venta']);
+      obj['Sueldo'] = conversion.toFixed(2);
+    });
+    return dataFormatted;
+  }
+
   /**
-   * 
-   * @param date 
+   *
+   * @param date
    * @returns the date as a string with the format DD/MM/YYYY
    */
   formatDate(date: Date): string {

@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { AppComponent } from './app.component';
-import { BlueComponent } from './dolar/blue/blue.component';
+import { DolarBlueComponent } from './dolar/blue/dolar-blue.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResultGridComponent } from './report/result-grid/result-grid.component';
 
 @NgModule({
-  declarations: [AppComponent, BlueComponent, ResultGridComponent],
+  declarations: [AppComponent, DolarBlueComponent, ResultGridComponent],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AgGridModule,
-    ReactiveFormsModule,
-    FormsModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
   ],
   providers: [],
