@@ -2,9 +2,9 @@
   <h1 class="text-3xl font-bold">{{ title }}</h1>
   <small class="text-slate-900">USD to ARS</small>
 </header>
-<div class="mx-60">
+<div class="lg:mx-60 sm:mx-2">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="relative flex h-10 w-full overflow-clip rounded-lg mt-3 mb-3">
+    <div class="relative flex h-10 w-full rounded-lg mt-3 mb-3">
       <label for="beforeDate" class="flex items-center rounded-l-lg border bg-slate-200 px-2 text-sm text-slate-600 w-24">Start date</label>
       <input
         type="text"
@@ -16,7 +16,7 @@
         [bsConfig]="datePickerConfig"
       />
     </div>
-    <div class="relative flex h-10 w-full overflow-clip rounded-lg mt-3 mb-3">
+    <div class="relative flex h-10 w-full rounded-lg mt-3 mb-3">
       <label for="afterDate" class="flex items-center rounded-l-lg border bg-slate-200 px-2 text-sm text-slate-600 transition-colors w-24">End date</label>
       <input
         type="text"
@@ -28,7 +28,7 @@
         [bsConfig]="datePickerConfig"
       />
     </div>
-    <div class="relative flex h-10 w-full overflow-clip rounded-lg mt-3 mb-3">
+    <div class="relative flex h-10 w-full rounded-lg mt-3 mb-3">
       <label for="salary" class="flex items-center rounded-l-lg border  bg-slate-200 px-2 text-sm text-slate-600 w-24">Salary</label>
       <input
         type="number"
@@ -47,6 +47,6 @@
     </div>
   </form>
 </div>
-<div class="mx-60" *ngIf="data">
+<div class="lg:mx-60 sm:mx-2" *ngIf="data">
   <exrate-result-grid [gridData]="data"></exrate-result-grid>
 </div>
