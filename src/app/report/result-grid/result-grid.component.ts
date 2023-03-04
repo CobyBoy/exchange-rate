@@ -9,7 +9,7 @@ import { GridDataItem } from 'src/app/interfaces/grid-data-item';
 })
 export class ResultGridComponent implements OnInit {
   private gridApi!: GridApi;
-  @Input() gridData!: Array<GridDataItem>;
+  @Input() gridData!: GridDataItem[];
   columnDefs: ColDef[] = [];
   defaultColDef: ColDef = {
     sortable: true,
