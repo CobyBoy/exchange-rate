@@ -1,52 +1,52 @@
 <header>
-  <h1 class="lead">{{ title }}</h1>
-  <small class="text-muted">USD to ARS</small>
+  <h1 class="text-3xl font-bold">{{ title }}</h1>
+  <small class="text-slate-900">USD to ARS</small>
 </header>
-<div class="pb-4">
+<div class="mx-60">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="input-group mb-3">
-      <label for="beforeDate" class="input-group-text">Start date</label>
+    <div class="relative flex h-10 w-full overflow-clip rounded-lg mt-3 mb-3">
+      <label for="beforeDate" class="flex items-center rounded-l-lg border bg-slate-200 px-2 text-sm text-slate-600 w-24">Start date</label>
       <input
         type="text"
         autocomplete="off"
-        class="form-control"
+        class="w-full rounded-r-lg border border-slate-400 px-2 text-slate-900 placeholder-slate-400 "
         id="beforeDate"
         formControlName="beforeDate"
         bsDatepicker
         [bsConfig]="datePickerConfig"
       />
     </div>
-    <div class="input-group mb-3">
-      <label for="afterDate" class="input-group-text">End date</label>
+    <div class="relative flex h-10 w-full overflow-clip rounded-lg mt-3 mb-3">
+      <label for="afterDate" class="flex items-center rounded-l-lg border bg-slate-200 px-2 text-sm text-slate-600 transition-colors w-24">End date</label>
       <input
         type="text"
         autocomplete="off"
-        class="form-control"
+        class="w-full rounded-r-lg border border-slate-400 px-2 text-slate-900 placeholder-slate-400 "
         id="afterDate"
         formControlName="afterDate"
         bsDatepicker
         [bsConfig]="datePickerConfig"
       />
     </div>
-    <div class="input-group mb-3">
-      <label for="salary" class="input-group-text">Salary</label>
+    <div class="relative flex h-10 w-full overflow-clip rounded-lg mt-3 mb-3">
+      <label for="salary" class="flex items-center rounded-l-lg border  bg-slate-200 px-2 text-sm text-slate-600 w-24">Salary</label>
       <input
         type="number"
         min="0"
         autocomplete="off"
-        class="form-control"
+        class="w-full rounded-r-lg border border-slate-400 px-2 text-slate-900 placeholder-slate-400 "
         id="salary"
         formControlName="salary"
       />
     </div>
 
     <div class="col-xs-12 col-12 col-md-4 form-group">
-      <button class="btn btn-primary" [disabled]="!form.valid || invalidDate">
+      <button class="rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white  hover:bg-indigo-500 disabled:opacity-25 mb-7" [disabled]="!form.valid || invalidDate">
         Search
       </button>
     </div>
   </form>
 </div>
-<div class="pb-4" *ngIf="data">
+<div class="mx-60" *ngIf="data">
   <exrate-result-grid [gridData]="data"></exrate-result-grid>
 </div>
